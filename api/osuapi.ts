@@ -1,6 +1,5 @@
 export class Osuapi {
-  constructor() {
-  }
+  constructor() {}
 }
 
 export let osuapi = new Osuapi();
