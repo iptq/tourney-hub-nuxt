@@ -3,10 +3,15 @@
     <div class="container">
       <div>
         <a class="nav-link brand" href="/">
-          <img class="logo" src="{logo}" alt="logo" />
+          <img class="logo" src="~/assets/logo.svg" alt="logo" />
           <span>Tourney Hub</span>
         </a>
-        <NuxtLink class="nav-link" to="link.url" v-for="link in links" :key="link.url">
+        <NuxtLink
+          class="nav-link"
+          :to="link.url"
+          v-for="link in links"
+          :key="link.url"
+        >
           {{ link.name }}
         </NuxtLink>
       </div>
