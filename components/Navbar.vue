@@ -16,13 +16,10 @@
         </NuxtLink>
       </div>
       <div>
-        {#if $session.isLoggedIn}
-        <a class="nav-link nav-right" href="/user/{$session.user.osu_id}"
-          >{$session.user.username}</a
+        <NuxtLink class="nav-link nav-right" :to="`/user/`" v-if="isLoggedIn"
+          >Username</NuxtLink
         >
-        {:else}
-        <a class="nav-link nav-right" href="/auth/login">Login</a>
-        {/if}
+        <a class="nav-link nav-right" href="/api/login" v-else>Login</a>
       </div>
     </div>
   </nav>
@@ -40,6 +37,10 @@ export interface Link {
 @Component
 export default class extends Vue {
   links: Link[] = [{ url: "/tournaments", name: "Tournaments" }];
+
+  get isLoggedIn() {
+    return this.$store.getters.isLoggedIn;
+  }
 }
 </script>
 
@@ -48,28 +49,33 @@ nav {
   background-color: var(--bg-color-2);
   border-bottom: 1px solid var(--bg-color-4);
   margin-bottom: var(--pad-size);
-}
-nav > div.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--pad-size) var(--dense-pad-size);
-}
-nav > div.container > div {
-  display: flex;
-  flex-direction: row;
-}
-nav > div.container .nav-link {
-  padding: var(--dense-pad-size) var(--pad-size);
-  text-decoration: none;
-  color: var(--main-font-color);
-  text-transform: uppercase;
-}
-nav > div.container .nav-link:not(.brand) {
-  padding: var(--pad-size);
-}
-nav > div.container .nav-link:hover {
-  box-shadow: inset 0 -3px 0 0 var(--accent-color);
+
+  > div.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--pad-size) var(--dense-pad-size);
+
+    > div {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .nav-link {
+      padding: var(--dense-pad-size) var(--pad-size);
+      text-decoration: none;
+      color: var(--main-font-color);
+      text-transform: uppercase;
+
+      &:not(.brand) {
+        padding: var(--pad-size);
+      }
+
+      &:hover {
+        box-shadow: inset 0 -3px 0 0 var(--accent-color);
+      }
+    }
+  }
 }
 a.brand {
   font-weight: bold;
