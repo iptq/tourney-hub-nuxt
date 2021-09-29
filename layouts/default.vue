@@ -16,6 +16,7 @@
 
 <style lang="scss" scoped>
 $footer-height: 62px;
+
 #app {
   position: relative;
   min-height: 100vh;
@@ -26,6 +27,7 @@ $footer-height: 62px;
     }
   }
 }
+
 footer.footer {
   position: absolute;
   bottom: 0;

@@ -3,7 +3,7 @@ import axios from "axios";
 import { AuthenticateOptions } from "passport";
 import { RequestHandler } from "express";
 
-import { User } from "~/api/models/user";
+import { User } from "./models/user";
 
 const options: OAuth2Strategy.StrategyOptions = {
   authorizationURL: "https://osu.ppy.sh/oauth/authorize",
