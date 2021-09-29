@@ -1,31 +1,42 @@
 import express from "express";
 import passport from "passport";
 import session from "express-session";
+import { createConnection } from "typeorm";
 
-// import koa from "koa";
-// import koaBodyParser from "koa-bodyparser";
-// import koaSession from "koa-session";
-// import koaPassport from "koa-passport";
-// import koaRouter from "@koa/router";
-
-import osuStrategy from "./passport-osu";
+import { OsuStrategy, callbackOptions, callbackFunction } from "./passport-osu";
 
 const app = express();
 
-app.use(
-  session({
-    secret: "TODO",
-    saveUninitialized: false,
-  })
-);
+// TODO: do an actual db
+createConnection({
+  type: "sqlite",
+  database: "test.db",
+}).then(async (_) => {
+  console.log("Connected");
 
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use("osu", osuStrategy);
+  app.use(
+    session({
+      secret: "TODO",
+      saveUninitialized: false,
+    })
+  );
 
-app.get("/login", passport.authenticate("osu", {}));
-app.get("/asdf", (req, res) => {
-  res.send("hellosu");
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  passport.use(new OsuStrategy());
+
+  app.get("/", (_, res) => {
+    res.status(400);
+    res.send("hi there");
+  });
+
+  app.get(
+    "/callback",
+    passport.authenticate("osu", callbackOptions),
+    callbackFunction
+  );
+  app.get("/login", passport.authenticate("osu"));
 });
 
 module.exports = app;
