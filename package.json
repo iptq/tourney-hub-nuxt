@@ -16,7 +16,6 @@
     "koa": "^2.13.3",
     "koa-bodyparser": "^4.3.0",
     "nuxt": "^2.15.7",
-    "portfinder": "^1.0.28",
     "sass": "^1.42.1"
   },
   "devDependencies": {
@@ -31,6 +30,7 @@
     "jest": "^27.0.5",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.3",
+    "vue-class-component": "^7.2.6",
     "vue-jest": "^3.0.4"
   }
 }
