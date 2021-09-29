@@ -4,13 +4,9 @@ export default {
   type: "sqlite",
   database: "test.db",
 
-  entities: [
-    "api/models/**/*.ts",
-  ],
+  entities: ["api/models/**/*.ts"],
 
-  migrations: [
-    "api/models/migrations/*.ts",
-  ],
+  migrations: ["api/models/migrations/*.ts"],
 
   cli: {
     migrationsDir: "api/models/migrations",
