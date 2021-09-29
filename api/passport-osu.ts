@@ -27,15 +27,20 @@ const verify = async (
       authorization: `Bearer ${accessToken}`,
     },
   });
+  let apiProfile = res.data;
   console.log("HELO", profile, res.data);
 
-  let user = await User.findOne();
+  let user = await User.findOne({
+    osu: {
+      userId: apiProfile["id"],
+    },
+  });
 
   // user doesn't exist in the database yet
   if (!user) {
   }
 
-  cb(null);
+  cb(null, user);
 };
 
 export class OsuStrategy extends OAuth2Strategy {
