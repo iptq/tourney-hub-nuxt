@@ -1,0 +1,76 @@
+so this is a
+database thing
+but do you think it'd be cool to keep track of stats like
+total maps played
+total maps won
+total tourney wins
+etc
+so you get this comprehensive stats overview like on hltv.org
+https://www.hltv.org/stats/players/4954/xyp9x
+
+
+ideas I came up with in the shower:
+--------------
+all of the above stuff can go into a more comprehensive ELO system
+possible ELO calculation methods:
+- ELO gain/loss as a function of your per-pick performance vs avg opponent score + your elo relative to your opponents (losing when your opponents are higher elo makes you lose less elo than you normally would)
+- ELO based on your performance vs. a per-beatmap calculated standard ELO (if every beatmap had their own rough ELO value, this might be a tool to help mappoolers balance more typical mappools)
+- in the case of !mp aborts or warmups, prob need an interface for referees to manually disable a pick from being included in ELO calculation
+- not sure how this would work with tournaments that don't use scorev2 win condition (maybe just invalidate elo for those tournies xd)
+------------
+tournaments can be either pp-rank-restricted or elo-restricted
+elo-restricted tournaments theoretically being more "reputable"
+prevent malicious elo farming by assigning "verified" badges to reputable tournament hosts (assigned on a case-by-case basis) where only verified hosts can create tournaments that are valid for elo calculations
+--------------
+everyone would probably start at an elo relative to their current pp rank, so it effectively serves as a clean fresh slate for tourney players who have 999999x badges
+- maybe separate "solo elo" and "team elo"
+- also elo separated by mode
+-----------------
+somehow save every match into db? I think some multi lobbies get erased after some time (can use this to view player tournament history)
+and that would all imply elo leaderboards xd
+------------
+can possibly create new UIs to serve as an alternative to the standard mp link lobby (to show more interesting elo-related stats/hide warmups/etc)
+thinking that for something like this
+the following would get their own id in a db:
+- each individual pick
+- each match
+(these might be foreign keys referenced in each user/player entry so that we can display a tournament history on their profiles)
+---------------
+optional: similar to how "osu.ppy.sh/b/xxxxxx resolves to an expanded link with the beatmapset id included, we could do something similar with "pick id", "match id", and "tourney id"
+
+not entirely sure how to implement this without a global id counter thing (which I've learned is kinda clunky and not good xd)
+Feiri — Today at 3:01 AM
+------------
+- unofficial badge system so that players can view badges sooner/more tournaments get badged/tournies can have 1st, 2nd, and 3rd place badges (unofficial badges can be displayed on players' profiles)
+- "verified" hosts/poolers/refs/testplayers/custom mappers
+----------------
+a better system for monitoring custom maps instead of just slinging around .osz files in discord
+-----------------
+separate user profiles into staffing & playing section
+---------------
+Page for viewing all mappools from any tournaments
+- filterable/sortable by elo/rank/avg sr/etc
+----------------
+- invitational tournament system
+- per-tournament player blacklist
+---------------
+tournaments can select their own "accent color" to change the yellow on the site to anything else when viewing their pages
+----------------
+featured tournaments/livestreams on home page
+--------------
+should be able to calculate total match time from mp links
+- just a cool stat to view on match pages
+-------------------
+betting system for matches
+- you wouldn't actually win anything tho
+-------------------
+- adding a timezone column to the user table might also be necessary for scheduling + displaying match times
+-------------------
+- might need a win condition column for mappools (eg. scorev2 + best of 11, accuracy + best of 9)
+- and also a "no. of bans" column associated with each mappools
+-------------------
+- if auto reffing becomes a thing, we might also need a special flag to identify the "tiebreaker" maps
+-------------------
+- qualifier pools might also need their own distinction
+because there could be any number of teams/players in a single lobby
+and maps either get played in mappool order or in some random sequence
