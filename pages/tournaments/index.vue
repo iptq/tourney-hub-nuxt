@@ -10,10 +10,7 @@
           />
           <input type="text" placeholder="search" />
         </div>
-        <a class="button" href="/tournaments/create">
-          <img class="icon" src="/icons/plus-square-regular.svg" alt="icon" />
-          Create New
-        </a>
+        <IconButton :href="'/tournaments/create'" :iconName="'plus-square-regular'" :text="'Create New'"/>
       </div>
       <div class="filters">
         <CheckBox text="filter1" />

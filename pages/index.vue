@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="index-container">
     <div class="container card">
       <CardTitle title="Home" />
       <div class="card-content">
@@ -11,7 +11,7 @@
     </div>
 
     <div class="container card">
-      <CardTitle title="Goals" />
+      <CardTitle title="goals"/>
       <div class="card-content">
         <p>Main goals:</p>
         <ul>
@@ -27,7 +27,6 @@
           <li>mappool caching</li>
         </ul>
       </div>
-      <hr />
       <div class="card-content">
         <p>Feature ideas:</p>
         <ul>
@@ -48,6 +47,19 @@
 
 <script lang="ts">
 import Vue from "vue";
-
 export default Vue.extend({});
 </script>
+
+<style lang="scss" scoped>
+  div.index-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--pad-size);
+    align-items: stretch;
+
+    > div.card {
+      width: calc(100% - 2px);
+    }
+  }
+
+</style>
