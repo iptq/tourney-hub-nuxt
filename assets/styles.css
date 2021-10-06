@@ -106,7 +106,7 @@ hr {
 .card {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0.5px;
   background-color: var(--bg-color-4);
   border: 1px solid var(--bg-color-4);
   border-radius: var(--border-radius);

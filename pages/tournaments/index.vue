@@ -13,13 +13,13 @@
         <IconButton :href="'/tournaments/create'" :iconName="'plus-square-regular'" :text="'Create New'"/>
       </div>
       <div class="filters">
-        <CheckBox text="filter1" />
-        <CheckBox text="filter2" />
-        <CheckBox text="filter3" />
+        <FormsCheckBox text="filter1" />
+        <FormsCheckBox text="filter2" />
+        <FormsCheckBox text="filter3" />
         <FormsRadio text="filter1" :checked="true" />
         <FormsRadio text="filter2" />
         <FormsRadio text="filter3" />
-        <NumberInput min="{0}" max="{100}" name="wtf" text="wtf" />
+        <FormsNumberInput :min="0" :max="100" :name="'wtf'" :widthRem="4" :text="'wtf'" />
       </div>
     </div>
     <div class="tourney-list card">
