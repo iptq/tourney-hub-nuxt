@@ -6,11 +6,14 @@
   --bg-color-3: #33353f;
   --bg-color-4: #454850;
   --bg-faded: #191a1da0;
+  --faded-bg-color: #191a1da0;
   --main-font-color: #dedeeb;
-  --alt-font-color: #dedeeb;
+  --alt-font-color: #dedeeb88;
   --accent-color: #f5b642;
   --accent-color-darker: #d39f3f;
   --accent-color-even-darker: #b88c3b;
+
+  --bg-layer: linear-gradient(var(--faded-bg-color), var(--faded-bg-color));
 
   --red: #e1335f;
   --blue: #3751c3;
@@ -51,6 +54,15 @@ body {
 
 .faded {
   opacity: var(--faded-opacity);
+}
+
+.light-font {
+  color: var(--alt-font-color);
+}
+
+.round-border {
+  border: 1px solid var(--bg-color-4);
+  border-radius: var(--border-radius);
 }
 
 a {
@@ -154,9 +166,4 @@ div.row-card > div.row-card-top {
   margin: 0;
   padding: var(--dense-pad-size) var(--pad-size);
   background-color: var(--bg-color-3);
-}
-
-img.icon {
-  width: 1rem;
-  height: 1rem;
 }

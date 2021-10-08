@@ -76,7 +76,7 @@ label.radio-container input:checked ~ span.checkmark:after {
 }
 label.radio-container span.checkmark:after {
   top: 0.3rem;
-  left: 0.3rem;
+  left: 0.32rem;
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 100%;

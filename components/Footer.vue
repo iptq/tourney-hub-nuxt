@@ -1,6 +1,5 @@
 <template>
   <footer>
-    <hr />
     <div class="container">
       <div class="footer-links">
         <a :href="link.url" v-for="link in links">{{ link.name }}</a>
@@ -34,11 +33,13 @@ export default class extends Vue {
 <style>
 footer {
   background-color: var(--bg-color-2);
+  background-repeat: no-repeat;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  border-top: 1px solid var(--bg-color-4);
 }
 
 div.footer-links {
