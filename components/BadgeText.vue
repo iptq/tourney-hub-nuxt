@@ -5,30 +5,35 @@
 </template>
 
 <script lang="ts">
-  export default {
+  import Vue from "vue";
+  import Component from "vue-class-component";
+
+  const StyleProps = Vue.extend({
     props: {
       badgeColor: {type: String,  default: "var(--accent-color)"},
       fontColor:  {type: String,  default: "var(--bg-color-1"},
       fontSize:   {type: String,  default: "1rem"},
       text:              String,
       thinMode:   {type: Boolean, default: false}
-    },
-    computed: {
-      cssProps() {
-        return {
-          '--badge-color':  this.badgeColor,
-          '--border-color': this.badgeColor,
-          '--font-color':   this.fontColor,
-          '--font-size':    this.fontSize
-        }
-      },
-      cssPropsThin() {
-        return {
-          '--badge-color':  "#00000000",
-          '--border-color': this.fontColor,
-          '--font-color':   this.fontColor,
-          '--font-size':    this.fontSize
-        }
+    }
+  })
+
+  @Component
+  export default class BadgeText extends StyleProps {
+    get cssProps() {
+      return {
+        '--badge-color':  this.badgeColor,
+        '--border-color': this.badgeColor,
+        '--font-color':   this.fontColor,
+        '--font-size':    this.fontSize
+      }
+    }
+    get cssPropsThin() {
+      return {
+        '--badge-color':  "#00000000",
+        '--border-color': this.fontColor,
+        '--font-color':   this.fontColor,
+        '--font-size':    this.fontSize
       }
     }
   }

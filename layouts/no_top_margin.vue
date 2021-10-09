@@ -22,10 +22,6 @@
     min-height: 100vh;
     .content-wrap {
       padding-bottom: $footer-height;
-      > .container {
-        margin-top: var(--pad-size);
-        padding-bottom: 36px;
-      }
     }
   }
 

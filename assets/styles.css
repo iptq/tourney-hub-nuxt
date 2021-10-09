@@ -106,8 +106,7 @@ hr {
 
 .container {
   margin: auto;
-  padding: 0rem;
-  max-width: 900px;
+  padding: 0 1rem;
 }
 @media screen and (max-width: 600px) {
   .container {
@@ -118,7 +117,7 @@ hr {
 .card {
   display: flex;
   flex-direction: column;
-  gap: 0.5px;
+  gap: 1px;
   background-color: var(--bg-color-4);
   border: 1px solid var(--bg-color-4);
   border-radius: var(--border-radius);
@@ -131,7 +130,7 @@ hr {
   }
 }
 
-.card > div.card-content {
+.card > .card-content {
   background-color: var(--bg-color-2);
   padding: var(--pad-size);
 }

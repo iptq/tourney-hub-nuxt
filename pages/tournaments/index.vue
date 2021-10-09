@@ -19,7 +19,7 @@
       </div>
     </div>
     <hr/>
-    <h1>Featured</h1>
+    <h1>Featured {{flag}}</h1>
     <div class="featured">
       <div class="featured-banner">
         <!-- <div class="featured-tags">
@@ -78,9 +78,11 @@
 </template>
 
 <script lang="ts">
+import {flag} from '~/plugins/flag';
 export default {
   data() {
     return {
+      flag: flag('CA'),
       featuredTitle: "Norsace Fake Tournament",
       featuredDesc: "A very cool 4v4 tournament for very pro players!!! Come play and have a good friggin time yes osu",
       tournaments: [{
@@ -127,7 +129,7 @@ div.t-listing {
 
   > div.featured {
     display:               grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 3fr 4fr;
     gap:                   var(--pad-size);
 
     > div.featured-banner {
@@ -217,7 +219,7 @@ div.t-listing {
 
   > div.tourney-list {
     display:               grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-auto-rows:        1fr;
     gap:                   calc(2 * var(--pad-size)) var(--pad-size);
 
@@ -234,7 +236,7 @@ div.t-listing {
         display:        flex;
         flex-direction: column-reverse;
 
-        height: 8rem;
+        height: 6rem;
         padding: var(--pad-size);
       }
 

@@ -36,7 +36,10 @@ export interface Link {
 
 @Component
 export default class extends Vue {
-  links: Link[] = [{ url: "/tournaments", name: "Tournaments" }];
+  links: Link[] = [
+    { url: "/tournaments", name: "Tournaments" },
+    { url: "/standings",   name: "Standings"}
+  ];
 
   get isLoggedIn() {
     return this.$store.getters.isLoggedIn;
@@ -48,7 +51,6 @@ export default class extends Vue {
 nav {
   background-color: var(--bg-color-2);
   border-bottom: 1px solid var(--bg-color-4);
-  margin-bottom: var(--pad-size);
   background-image: linear-gradient(
     45deg,
     var(--bg-color-2) 25%,

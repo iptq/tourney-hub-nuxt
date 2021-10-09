@@ -1,5 +1,5 @@
 <template>
-  <div class="container card">
+  <div class="card">
     <CardTitle title="Create New Tournament" />
     <div class="card-content">
       <form on:submit|preventDefault|stopPropagation={submit}>

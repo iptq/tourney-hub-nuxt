@@ -3,21 +3,26 @@
 </template>
 
 <script lang="ts">
-export default {
-  props: {
-    userId:        Number,
-    width:  {type: String, default: "1.5rem"},
-    height: {type: String, default: "1.5rem"}
-  },
-  computed: {
-    cssProps() {
+  import Vue from "vue";
+  import Component from "vue-class-component";
+
+  const styleProps = Vue.extend({
+    props: {
+      userId:        Number,
+      width:  {type: String, default: "1.5rem"},
+      height: {type: String, default: "1.5rem"}
+    }
+  })
+
+  @Component
+  export default class OsuPfp extends styleProps{
+    get cssProps() {
       return {
         '--img-width':  this.width,
         '--img-height': this.height
       }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>

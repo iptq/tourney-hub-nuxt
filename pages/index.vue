@@ -1,5 +1,5 @@
 <template>
-  <div class="index-container container">
+  <div class="index-container">
     <div class="index-grid">
       <div class="content-side">
         <div class="card">
