@@ -129,7 +129,7 @@ div.t-listing {
 
   > div.featured {
     display:               grid;
-    grid-template-columns: 3fr 4fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));;
     gap:                   var(--pad-size);
 
     > div.featured-banner {
@@ -157,6 +157,7 @@ div.t-listing {
       display:         flex;
       flex-direction:  column;
       justify-content: space-between;
+      gap:             var(--pad-size);
 
       > div.featured-body-head {
         display:        flex;
@@ -179,7 +180,7 @@ div.t-listing {
 
     > div.filters {
       display:        flex;
-      flex-direction: row;
+      flex-flow:      row wrap;
       gap:            calc(1.5 * var(--pad-size));
     }
 
@@ -219,7 +220,7 @@ div.t-listing {
 
   > div.tourney-list {
     display:               grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     grid-auto-rows:        1fr;
     gap:                   calc(2 * var(--pad-size)) var(--pad-size);
 
@@ -277,10 +278,10 @@ div.host {
 }
 
 div.tags {
-  display:        flex;
-  flex-direction: row;
-  gap:            var(--dense-pad-size);
-  align-self:     flex-end;
+  display:    flex;
+  flex-flow:  row-reverse wrap-reverse;
+  gap:        var(--dense-pad-size);
+  align-self: flex-end;
 }
 
 h1, h2, h3 {

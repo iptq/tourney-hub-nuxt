@@ -69,9 +69,19 @@ nav {
     align-items: center;
     gap: var(--pad-size) var(--dense-pad-size);
 
+    @media screen and (max-width: 600px) {
+      flex-flow: column wrap;
+      gap: 0;
+    }
+
     > div {
       display: flex;
-      flex-direction: row;
+      flex-flow: row wrap;
+
+      @media screen and (max-width: 600px) {
+        align-items: center;
+        flex-flow: column wrap;
+      }
     }
 
     .nav-link {
