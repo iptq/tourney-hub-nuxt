@@ -7,7 +7,7 @@ import { Module, VuexModule } from "vuex-module-decorators";
 })
 export default class UserModule extends VuexModule {
   get isAuthenticated() {
-    return true;
+    return false;
   }
 
   get loggedInUser() {

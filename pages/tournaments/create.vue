@@ -17,6 +17,12 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  middleware: "auth",
+}
+</script>
+
 <style lang="scss" scoped>
 div.centered {
   display: flex;

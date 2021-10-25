@@ -39,6 +39,10 @@ export default {
 
   // Auth
   auth: {
+    redirect: {
+      login: "/api/auth/login",
+      home: "/",
+    },
     strategies: {
       cookie: {
         cookie: {
@@ -59,9 +63,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    analyze: true,
-  },
+  build: {},
 
   // Proxy for the API
   proxy: {

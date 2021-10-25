@@ -1,0 +1,5 @@
+[debug]
+port = 3002
+
+[default.databases.db]
+url = "test.db"

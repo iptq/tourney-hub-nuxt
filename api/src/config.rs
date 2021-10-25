@@ -1,9 +1,6 @@
-use cookie::Key;
-use oauth2::{ClientId, ClientSecret};
-
-#[derive(Clone)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Config {
-    pub key: Key,
-    pub client_id: ClientId,
-    pub client_secret: ClientSecret,
+    pub osu_client_id: u32,
+    pub osu_client_secret: String,
+    pub public_url: String,
 }
