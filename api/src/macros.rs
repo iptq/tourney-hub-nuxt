@@ -2,7 +2,12 @@ macro_rules! Resp {
     () => { impl warp::Filter<
         Extract = (impl warp::Reply,),
         Error = warp::Rejection,
-    > + Clone }
+    > + Clone };
+
+    (E = $ty:ty) => { impl warp::Filter<
+        Extract = (impl warp::Reply,),
+        Error = $ty,
+    > + Clone };
 }
 
 #[macro_export]

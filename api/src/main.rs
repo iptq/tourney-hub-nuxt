@@ -11,23 +11,14 @@ mod utils;
 
 use std::env;
 
-use anyhow::{Error, Result};
+use anyhow::Result;
 use oauth2::{
     basic::BasicClient, AuthUrl, ClientId, ClientSecret, RedirectUrl, TokenUrl,
 };
 use sqlx::{migrate::Migrator, sqlite::SqlitePoolOptions};
-use warp::{reject::Reject, Filter};
+use warp::Filter;
 
 static MIGRATOR: Migrator = migrate!();
-
-#[derive(Debug)]
-struct RejectError(Error);
-
-impl From<Error> for RejectError {
-    fn from(err: Error) -> Self { RejectError(err) }
-}
-
-impl Reject for RejectError {}
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -55,8 +46,6 @@ async fn main() -> Result<()> {
         AuthUrl::new("https://osu.ppy.sh/oauth/authorize".to_string())?,
         Some(TokenUrl::new("https://osu.ppy.sh/oauth/token".to_string())?),
     )
-    // Set the URL the user will be redirected to after the authorization
-    // process.
     .set_redirect_uri(redirect_uri);
 
     let auth = warp::path("auth").and(route_any! {
