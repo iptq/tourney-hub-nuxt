@@ -42,8 +42,10 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
-  serverMiddleware: {
-    "/api": "~/api",
+  // Proxy for the API
+  proxy: {
+    // TODO: actually fetch this from the config
+    "/api/": "http://localhost:3002",
   },
 
   server: {

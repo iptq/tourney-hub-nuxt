@@ -1,0 +1,17 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.44"
+tokio = { version = "1.12.0", features = ["full"] }
+warp = { version = "0.3.1", features = ["multipart"] }
+parking_lot = "0.11.2"
+oauth2 = "4.1.0"
+stderrlog = "0.5.1"
+dotenv = "0.15.0"
+
+[dependencies.sqlx]
+version = "0.5.9"
+features = ["json", "runtime-tokio-rustls", "sqlite"]
