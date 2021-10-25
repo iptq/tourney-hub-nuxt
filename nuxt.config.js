@@ -34,7 +34,24 @@ export default {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     "@nuxtjs/dotenv",
+    "@nuxtjs/auth-next",
   ],
+
+  // Auth
+  auth: {
+    strategies: {
+      cookie: {
+        cookie: {
+          name: "XSRF-TOKEN",
+        },
+        endpoints: {
+          csrf: {
+            url: "/api/auth/csrf",
+          },
+        },
+      },
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -42,7 +59,9 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    analyze: true,
+  },
 
   // Proxy for the API
   proxy: {
@@ -52,5 +71,5 @@ export default {
 
   server: {
     port: 3001,
-  }
+  },
 };

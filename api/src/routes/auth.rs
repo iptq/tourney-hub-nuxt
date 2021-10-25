@@ -4,29 +4,33 @@ use anyhow::Error;
 use futures::future::TryFutureExt;
 use http::{HeaderMap, HeaderValue};
 use oauth2::{
-    basic::BasicClient, reqwest::async_http_client, AuthorizationCode,
-    CsrfToken, RefreshToken, TokenResponse,
+    reqwest::async_http_client, AuthorizationCode, CsrfToken, RefreshToken,
+    TokenResponse,
 };
 use reqwest::{header::AUTHORIZATION, Client};
 use rosu_v2::prelude::User;
-use sqlx::SqlitePool;
 use warp::{http::Uri, Filter};
 
-use crate::utils::{with_pool, RejectError};
+use crate::{
+    utils::{with_pool, RejectError},
+    State,
+};
 
-pub fn login(oauth2_client: BasicClient) -> Resp!(E = Infallible) {
-    warp::any().map(move || {
-        let auth = oauth2_client.authorize_url(CsrfToken::new_random);
-        let (url, _) = auth.url();
-        let uri = Uri::from_str(url.as_str()).unwrap();
-        warp::redirect::temporary(uri)
-    })
+pub fn login(state: State) -> Resp!() {
+    warp::any()
+        .and(warp_sessions::request::with_session(state.session_store, None))
+        .map(move |session| {
+            let auth = state.oauth2_client.authorize_url(CsrfToken::new_random);
+            let (url, _) = auth.url();
+            let uri = Uri::from_str(url.as_str()).unwrap();
+            warp::redirect::temporary(uri)
+        })
 }
 
-pub fn callback(oauth2_client: BasicClient, pool: SqlitePool) -> Resp!() {
-    warp::query().and(with_pool(pool)).and_then(
+pub fn callback(state: State) -> Resp!() {
+    warp::query().and(with_pool(state.pool)).and_then(
         move |query: HashMap<String, String>, pool| {
-            let client = oauth2_client.clone();
+            let client = state.oauth2_client.clone();
             let code = query.get("code").unwrap().to_string();
             async move {
                 // exchange the code for an access token

@@ -10,9 +10,9 @@
 </template>
 
 <style lang="scss" scoped>
-  div.standings-wrapper {
-    display: grid;
-    grid-template-columns: 10rem 1fr;
-    gap: var(--pad-size);
-  }
+div.standings-wrapper {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: var(--pad-size);
+}
 </style>

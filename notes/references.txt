@@ -1,0 +1,1 @@
+nuxt auth: https://www.digitalocean.com/community/tutorials/implementing-authentication-in-nuxtjs-app

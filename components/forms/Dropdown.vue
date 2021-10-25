@@ -10,34 +10,34 @@
 </template>
 
 <script lang="ts">
-  import Vue from "vue";
-  import Component from "vue-class-component";
-  import { PropType } from "vue"
+import Vue from "vue";
+import Component from "vue-class-component";
+import { PropType } from "vue";
 
-  @Component({
-    props: {
-      fieldName: String,
-      options:   Array as PropType<string[]>,
-      label:     String
-    }
-  })
-  export default class extends Vue{}
+@Component({
+  props: {
+    fieldName: String,
+    options: Array as PropType<string[]>,
+    label: String,
+  },
+})
+export default class extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-  div.dropdown {
-    display: flex;
-    flex-direction: column;
-    gap: var(--dense-pad-size);
+div.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dense-pad-size);
 
-    > select {
-      padding: var(--dense-pad-size);
-      background-color: unset;
-      color: unset;
+  > select {
+    padding: var(--dense-pad-size);
+    background-color: unset;
+    color: unset;
 
-      > option {
-        color: initial;
-      }
+    > option {
+      color: initial;
     }
   }
+}
 </style>

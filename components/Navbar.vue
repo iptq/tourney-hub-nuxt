@@ -15,8 +15,12 @@
           {{ link.name }}
         </NuxtLink>
       </div>
+      <b>HELLOSU {{ isAuthenticated }} {{ loggedInUser }} END</b>
       <div>
-        <NuxtLink class="nav-link nav-right" :to="`/user/`" v-if="isLoggedIn"
+        <NuxtLink
+          class="nav-link nav-right"
+          :to="`/user/`"
+          v-if="isAuthenticated"
           >Username</NuxtLink
         >
         <a class="nav-link nav-right" href="/api/auth/login" v-else>Login</a>
@@ -38,12 +42,22 @@ export interface Link {
 export default class extends Vue {
   links: Link[] = [
     { url: "/tournaments", name: "Tournaments" },
-    { url: "/standings",   name: "Standings"}
+    { url: "/standings", name: "Standings" },
   ];
 
-  get isLoggedIn() {
-    return this.$store.getters.isLoggedIn;
+  get isAuthenticated() {
+    return this.$store.getters["users/isAuthenticated"];
   }
+
+  get loggedInUser() {
+    return this.$store.getters["users/loggedInUser"];
+  }
+
+  methods = {
+    logout: async () => {
+      await this.$auth.logout();
+    },
+  };
 }
 </script>
 
@@ -59,7 +73,8 @@ nav {
     var(--bg-color-2) 50%,
     var(--bg-color-2) 75%,
     var(--bg-color-3) 75%,
-    var(--bg-color-3) 100%);
+    var(--bg-color-3) 100%
+  );
   background-size: 33.94px 33.94px;
 
   > div.container {

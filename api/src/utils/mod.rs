@@ -1,3 +1,5 @@
+pub mod cookies;
+
 use std::convert::Infallible;
 
 use anyhow::Error;

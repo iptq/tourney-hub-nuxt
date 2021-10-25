@@ -8,7 +8,7 @@
           <aside class="sidebar">
             <h2>Tournament Name</h2>
             <div class="menu-section">
-              <input id="general-toggle" type="checkbox">
+              <input id="general-toggle" type="checkbox" />
               <label id="general-toggle-label" for="general-toggle">
                 <a class="major-link">General</a>
                 <i class="arrow" />
@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="menu-section">
-              <input id="mappools-toggle" type="checkbox">
+              <input id="mappools-toggle" type="checkbox" />
               <label id="mappools-toggle-label" for="mappools-toggle">
                 <a class="major-link">Mappools</a>
                 <i class="arrow down" />
@@ -40,7 +40,7 @@
               </div>
             </div>
             <div class="menu-section">
-              <input id="utilities-toggle" type="checkbox">
+              <input id="utilities-toggle" type="checkbox" />
               <label id="utilities-toggle-label" for="utilities-toggle">
                 <a class="major-link">Utilities</a>
                 <i class="arrow down" />
@@ -97,146 +97,146 @@ export default class extends styleProps {
 </script>-->
 
 <style lang="scss" scoped>
-  $footer-height: 62px;
+$footer-height: 62px;
 
-  #app {
-    position: relative;
-    min-height: 100vh;
-    .content-wrap {
-      padding-bottom: $footer-height;
+#app {
+  position: relative;
+  min-height: 100vh;
+  .content-wrap {
+    padding-bottom: $footer-height;
+  }
+}
+
+footer.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+}
+
+div.config-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100%;
+
+  > aside.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 12rem;
+    border-right: 1px solid var(--bg-color-4);
+    position: sticky;
+    top: 0;
+    overflow-y: scroll;
+    padding: 0 var(--pad-size);
+
+    h2 {
+      margin: 0;
+      padding: var(--pad-size) var(--pad-size) 0 var(--pad-size);
     }
-  }
 
-  footer.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: $footer-height;
-  }
-
-  div.config-grid {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    height: 100%;
-
-    > aside.sidebar {
+    div.menu-section {
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      width: 12rem;
-      border-right: 1px solid var(--bg-color-4);
-      position: sticky;
-      top: 0;
-      overflow-y: scroll;
-      padding: 0 var(--pad-size);
+      margin-top: 1rem;
+      width: 100%;
 
-      h2 {
-        margin: 0;
-        padding: var(--pad-size) var(--pad-size) 0 var(--pad-size);
+      > input[type="checkbox"] {
+        display: none;
       }
 
-      div.menu-section {
-        display: flex;
-        flex-direction: column;
-        margin-top: 1rem;
+      > label {
         width: 100%;
+      }
 
-        > input[type=checkbox] {
-          display: none;
+      > input {
+        &#general-toggle:not(:checked) ~ #general-menu,
+        &#mappools-toggle:not(:checked) ~ #mappools-menu,
+        &#utilities-toggle:not(:checked) ~ #utilities-menu {
+          transform: scaleY(0);
+          height: 0;
         }
 
-        > label {
-          width: 100%;
-        }
-
-        > input {
-          &#general-toggle:not(:checked) ~ #general-menu,
-          &#mappools-toggle:not(:checked) ~ #mappools-menu,
-          &#utilities-toggle:not(:checked) ~ #utilities-menu {
-            transform: scaleY(0);
-            height: 0;
-          }
-
-          &#general-toggle:not(:checked) ~ #general-toggle-label,
-          &#mappools-toggle:not(:checked) ~ #mappools-toggle-label,
-          &#utilities-toggle:not(:checked) ~ #utilities-toggle-label {
-            > i.arrow {
-              transform: rotate(-45deg);
-              -webkit-transform: rotate(-45deg);
-            }
+        &#general-toggle:not(:checked) ~ #general-toggle-label,
+        &#mappools-toggle:not(:checked) ~ #mappools-toggle-label,
+        &#utilities-toggle:not(:checked) ~ #utilities-toggle-label {
+          > i.arrow {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
           }
         }
+      }
 
-        a {
-          padding: var(--dense-pad-size) var(--pad-size);
-          color: var(--alt-font-color);
+      a {
+        padding: var(--dense-pad-size) var(--pad-size);
+        color: var(--alt-font-color);
 
-          &:hover {
-            color: var(--main-font-color);
-            cursor: pointer;
-            text-decoration: none;
-          }
+        &:hover {
+          color: var(--main-font-color);
+          cursor: pointer;
+          text-decoration: none;
         }
+      }
 
-        > label {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
+      > label {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
 
-          &:hover {
-            cursor: pointer;
-
-            > a.major-link{
-              color: var(--main-font-color);
-            }
-
-            > i.arrow {
-              border: solid var(--main-font-color);
-              border-width: 0 3px 3px 0;
-            }
-          }
+        &:hover {
+          cursor: pointer;
 
           > a.major-link {
-            font-size: 1.2rem;
+            color: var(--main-font-color);
           }
 
           > i.arrow {
-            border: solid var(--alt-font-color);
+            border: solid var(--main-font-color);
             border-width: 0 3px 3px 0;
-            display: inline-block;
-            padding: 3px;
-
-            transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
           }
         }
 
-        > div.collapse-menu {
-          display: flex;
-          flex-direction: column;
+        > a.major-link {
+          font-size: 1.2rem;
+        }
 
-          > a {
-            font-size: unset;
-            text-decoration: none;
+        > i.arrow {
+          border: solid var(--alt-font-color);
+          border-width: 0 3px 3px 0;
+          display: inline-block;
+          padding: 3px;
 
-            &:hover {
-              background-color: var(--bg-color-2);
-            }
-          }
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
         }
       }
-    }
 
-    div.config-body {
-      > div.config-body-title {
-        border-bottom: 1px solid var(--bg-color-4);
-        padding: var(--dense-pad-size) var(--pad-size);
+      > div.collapse-menu {
+        display: flex;
+        flex-direction: column;
 
-        p {
-          margin: 0;
+        > a {
+          font-size: unset;
+          text-decoration: none;
+
+          &:hover {
+            background-color: var(--bg-color-2);
+          }
         }
       }
     }
   }
+
+  div.config-body {
+    > div.config-body-title {
+      border-bottom: 1px solid var(--bg-color-4);
+      padding: var(--dense-pad-size) var(--pad-size);
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
 </style>

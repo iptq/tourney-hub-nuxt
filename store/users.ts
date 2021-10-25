@@ -1,18 +1,16 @@
-import { ActionTree } from "vuex";
+import { Module, VuexModule } from "vuex-module-decorators";
 
-export interface UserInfo {}
+@Module({
+  name: "users",
+  stateFactory: true,
+  namespaced: true,
+})
+export default class UserModule extends VuexModule {
+  get isAuthenticated() {
+    return true;
+  }
 
-export interface UserState {
-  user: UserInfo | null;
+  get loggedInUser() {
+    return "Hellosu";
+  }
 }
-
-export const actions: ActionTree<UserState, UserState> = {
-  async login({ commit }, user) {
-    commit("auth_request");
-    let response = await this.$axios.$get("/api/login", {
-      data: user,
-      method: "POST",
-    });
-    commit("auth_success");
-  },
-};
