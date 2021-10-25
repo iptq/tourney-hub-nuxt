@@ -19,7 +19,7 @@
         <NuxtLink class="nav-link nav-right" :to="`/user/`" v-if="isLoggedIn"
           >Username</NuxtLink
         >
-        <a class="nav-link nav-right" href="/api/login" v-else>Login</a>
+        <a class="nav-link nav-right" href="/api/auth/login" v-else>Login</a>
       </div>
     </div>
   </nav>

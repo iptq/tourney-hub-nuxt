@@ -35,7 +35,6 @@ pub fn callback(oauth2_client: BasicClient, pool: SqlitePool) -> Resp!() {
                     .exchange_code(code)
                     .request_async(async_http_client)
                     .await?;
-                println!("token: {:?}", token);
                 let access_token = token.access_token().secret();
                 let refresh_token = token.refresh_token().map(RefreshToken::secret);
 
@@ -56,21 +55,33 @@ pub fn callback(oauth2_client: BasicClient, pool: SqlitePool) -> Resp!() {
                 let user: User = res.json().await?;
                 let statistics = user.statistics.unwrap();
 
-                // store it in the database
-                query!(r#"
-                    INSERT INTO "users" (osu_id, username, country_code, rank, pp, access_token, refresh_token)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
-                "#,
-                    user.user_id,
-                    user.username,
-                    user.country_code,
-                    statistics.global_rank,
-                    statistics.pp,
-                    access_token,
-                    refresh_token,
-                ).execute(&pool).await?;
+                // check if it's already in the database
+                let db_user = match query!(r#"
+                    SELECT username FROM "users"
+                    WHERE osu_id = ?
+                "#, user.user_id).fetch_one(&pool).await {
+                    Ok(v) => Ok(Some(v)),
+                    Err(sqlx::Error::RowNotFound) => Ok(None),
+                    Err(err) => Err(err),
+                }?;
 
-                Ok::<_, Error>("hellosu")
+                if db_user.is_none() {
+                    // store it in the database
+                    query!(r#"
+                        INSERT INTO "users" (osu_id, username, country_code, rank, pp, access_token, refresh_token)
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
+                    "#,
+                        user.user_id,
+                        user.username,
+                        user.country_code,
+                        statistics.global_rank,
+                        statistics.pp,
+                        access_token,
+                        refresh_token,
+                    ).execute(&pool).await?;
+                }
+
+                Ok::<_, Error>(warp::redirect::temporary(Uri::from_static("/")))
             }
             .map_err(Error::from)
             .map_err(RejectError::from)

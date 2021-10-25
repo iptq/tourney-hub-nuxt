@@ -37,7 +37,7 @@ async fn main() -> Result<()> {
     let client_secret =
         ClientSecret::new(env::var("THUB_OSU_CLIENT_SECRET").unwrap());
     let redirect_uri = RedirectUrl::new(
-        env::var("THUB_PUBLIC_URL").unwrap() + "/auth/callback",
+        env::var("THUB_PUBLIC_URL").unwrap() + "/api/auth/callback",
     )?;
 
     let oauth2_client = BasicClient::new(
@@ -53,9 +53,16 @@ async fn main() -> Result<()> {
         GET ("callback") => auth::callback(oauth2_client.clone(), pool.clone()),
     });
 
-    warp::serve(auth.with(warp::log("api")))
-        .run(([127, 0, 0, 1], 3002))
-        .await;
+    let api = auth;
+
+    warp::serve(
+        warp::path("api")
+            .and(api.clone())
+            .or(api)
+            .with(warp::log("api")),
+    )
+    .run(([127, 0, 0, 1], 3002))
+    .await;
 
     Ok(())
 }
