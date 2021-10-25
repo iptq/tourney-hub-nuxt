@@ -39,20 +39,14 @@ export default {
 
   // Auth
   auth: {
-    redirect: {
-      login: "/api/auth/login",
-      home: "/",
-    },
     strategies: {
-      cookie: {
-        cookie: {
-          name: "XSRF-TOKEN",
-        },
+      osu: {
+        scheme: "oauth2",
         endpoints: {
-          csrf: {
-            url: "/api/auth/csrf",
-          },
+          authorization: "/api/auth/login",
+          userInfo: "/api/auth/status",
         },
+        responseType: "code",
       },
     },
   },

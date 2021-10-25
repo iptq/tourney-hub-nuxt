@@ -19,10 +19,12 @@ cookie = { version = "0.15.1", features = ["secure", "percent-encode"] }
 hex = "0.4.3"
 warp-sessions = "1.0.15"
 serde = { version = "1.0.130", features = ["derive"] }
+thiserror = "1.0.30"
 
 [dependencies.rocket]
 git = "https://github.com/SergioBenitez/Rocket"
 rev = "e382bc584b478092fdd53eefb9f90ea9c08a6967"
+features = ["json", "secrets"]
 
 [dependencies.rocket_db_pools]
 git = "https://github.com/SergioBenitez/Rocket"
@@ -32,3 +34,5 @@ features = ["sqlx_sqlite", "sqlx_macros"]
 [dependencies.sqlx]
 version = "0.5.9"
 features = ["json", "runtime-tokio-rustls", "sqlite"]
+
+[features]

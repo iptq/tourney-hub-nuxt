@@ -6,6 +6,8 @@ extern crate rocket;
 extern crate serde;
 #[macro_use]
 extern crate sqlx;
+#[macro_use]
+extern crate thiserror;
 
 mod config;
 mod routes;
@@ -28,7 +30,7 @@ static MIGRATOR: Migrator = migrate!();
 
 #[derive(Database)]
 #[database("db")]
-struct Db(sqlx::SqlitePool);
+pub struct Db(sqlx::SqlitePool);
 
 // TODO: DEBUG ONLY
 #[get("/")]
@@ -47,6 +49,6 @@ fn rocket() -> _ {
         .attach(Db::init())
         .mount("/api", {
             use routes::*;
-            routes![hello, auth::login, auth::callback]
+            routes![hello, auth::callback, auth::login, auth::status]
         })
 }

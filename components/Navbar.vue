@@ -46,18 +46,16 @@ export default class extends Vue {
   ];
 
   get isAuthenticated() {
-    return this.$store.getters["users/isAuthenticated"];
+    return this.$auth.loggedIn;
   }
 
   get loggedInUser() {
-    return this.$store.getters["users/loggedInUser"];
+    return this.$auth.user;
   }
 
-  methods = {
-    logout: async () => {
-      await this.$auth.logout();
-    },
-  };
+  async logout() {
+    await this.$auth.logout();
+  }
 }
 </script>
 
